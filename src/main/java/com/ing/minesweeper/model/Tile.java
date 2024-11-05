@@ -1,29 +1,33 @@
 package com.ing.minesweeper.model;
 
 public class Tile {
+    int row;
+    int col;
     int adjacentMines;
     boolean hasMine;
     boolean revealed;
-    boolean flagged;
 
-    Tile() {
+    Tile(int row, int col) {
         adjacentMines = 0;
         hasMine = false;
+        this.row = row;
+        this.col = col;
         revealed = false;
-        flagged = false;
     }
 
-    void setMine() { hasMine = true; }
+    public int getRow() { return row; }
 
-    boolean isMine() { return hasMine; }
+    public int getCol() { return col; }
 
-    boolean isRevealed() { return revealed; }
+    public void setMine() { hasMine = true; }
 
-    void reveal() { revealed = true; }
+    public boolean isMine() { return hasMine; }
 
-    boolean isFlagged() { return flagged; }
+    public boolean isRevealed() { return revealed; }
 
-    void setFlag() { flagged = true; }
+    public void setRevealed() { revealed = true; }
+
+    public int getAdjacentMines () { return adjacentMines; }
 
     void incrementAdjacentMines() { ++adjacentMines; }
 }

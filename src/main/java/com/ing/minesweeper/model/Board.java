@@ -4,23 +4,23 @@ import java.util.Random;
 
 public class Board {
     Tile[][] board;
-    int mineCount;
+    Tile[] mines;
 
     public Board( int size, int mineCount ) {
         board = new Tile[size][size];
         for( int row = 0; row < board.length; row++ )
             for( int col = 0; col < board[row].length; col++ )
-                board[row][col] = new Tile();
+                board[row][col] = new Tile(row, col);
 
-        this.mineCount = mineCount;
+        this.mines = new Tile[mineCount];
         placeMines();
     }
 
     void placeMines() {
         Random random = new Random(0); // TODO: Remove seed; it's meant for debugging
-        int minesToBePlaced = mineCount;
+        int minesPlaced = 0;
 
-        while( minesToBePlaced > 0 ) {
+        while( minesPlaced < mines.length) {
             int row = random.nextInt(board.length);
             int col = random.nextInt(board[row].length);
 
@@ -29,7 +29,7 @@ public class Board {
 
             board[row][col].setMine();
             incrementAdjacentTiles(row, col);
-            minesToBePlaced--;
+            mines[minesPlaced++] = board[row][col];
         }
     }
 
@@ -46,23 +46,28 @@ public class Board {
         return false;
     }
 
+    public int getAdjacentMines( int row, int col ) {
+        if( withinBounds(row, col) )
+            return board[row][col].getAdjacentMines();
+        return 0;
+    }
+
+    public void setRevealed( int row, int col ) {
+        if( withinBounds(row, col) )
+            board[row][col].setRevealed();
+    }
+
     public boolean isRevealed( int row, int col ) {
         if( withinBounds(row, col) )
             return board[row][col].isRevealed();
-        return false;
-    }
-
-    public boolean isFlagged( int row, int col ) {
-        if( withinBounds(row, col) )
-            return board[row][col].isFlagged();
-        return false;
+        return true;
     }
 
     public boolean withinBounds( int row, int col ) {
-        return row > 0 && row < board.length && col > 0 && col < board[row].length;
+        return row >= 0 && row < board.length && col >= 0 && col < board[row].length;
     }
 
-    public int getMineCount() {
-        return mineCount;
-    }
+    public int getMineCount() { return mines.length; }
+
+    public Tile[] getMines() { return mines; }
 }
