@@ -22,6 +22,7 @@ public class MinesweeperGame implements GameObserver {
 
     @Override
     public void onGameRestart() {
+        controller.resetBoard();
         controller.start();
     }
 }

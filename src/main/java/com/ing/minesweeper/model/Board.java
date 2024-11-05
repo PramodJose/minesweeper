@@ -57,6 +57,11 @@ public class Board {
             board[row][col].setRevealed();
     }
 
+    public void unsetRevealed( int row, int col ) {
+        if( withinBounds(row, col) )
+            board[row][col].unsetRevealed();
+    }
+
     public boolean isRevealed( int row, int col ) {
         if( withinBounds(row, col) )
             return board[row][col].isRevealed();

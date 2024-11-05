@@ -34,6 +34,15 @@ public class GameController implements MouseClickObserver {
         view.setStatusPanel("Mines: " + board.getMineCount());
     }
 
+    public void resetBoard() {
+        for( int row = 0 ; row < size; row++ )
+            for( int col = 0; col < size; col++ )
+                board.unsetRevealed(row, col);
+
+        gameOver = false;
+        tilesClicked = 0;
+    }
+
     @Override
     public void onLeftClick(SquareTile tile) {
         if(gameOver)

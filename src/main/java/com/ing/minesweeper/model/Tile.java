@@ -27,6 +27,8 @@ public class Tile {
 
     public void setRevealed() { revealed = true; }
 
+    public void unsetRevealed() { revealed = false; }
+
     public int getAdjacentMines () { return adjacentMines; }
 
     void incrementAdjacentMines() { ++adjacentMines; }
