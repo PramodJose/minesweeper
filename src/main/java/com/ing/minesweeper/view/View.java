@@ -1,5 +1,7 @@
 package com.ing.minesweeper.view;
 
+import com.ing.minesweeper.controller.GameListener;
+import com.ing.minesweeper.controller.GameObserver;
 import com.ing.minesweeper.controller.MouseClickListener;
 
 import javax.swing.*;
@@ -13,19 +15,22 @@ public class View {
     JPanel statusPanel;
     JPanel boardPanel;
     MouseClickListener listener;
+    JButton newGame, restartGame;
+    GameListener gameListener;
 
     final int tileSize = 80; // in pixels
     final String GAME_NAME = "Minesweeper";
 
-    public View( int size, MouseClickListener listener ) {
+    public View( int size, MouseClickListener listener, GameListener gameListener ) {
         this.size = size;
         this.listener = listener;
+        this.gameListener = gameListener;
         squareBoard = new SquareTile[size][size];
     }
 
     public void drawWindow() {
         frame = new JFrame(GAME_NAME);
-        frame.setSize(size * tileSize, size * tileSize);
+        frame.setSize(size * tileSize, (size + 1) * tileSize);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,11 +39,25 @@ public class View {
         statusLabel = new JLabel();
         statusLabel.setFont(new Font("Arial", Font.BOLD, 25));
         statusLabel.setHorizontalAlignment(JLabel.CENTER);
-        statusLabel.setText("Minesweeper");
+        statusLabel.setText(GAME_NAME);
         statusLabel.setOpaque(true);
 
+        newGame = new JButton();
+        newGame.setFont(new Font("Arial", Font.BOLD, 25));
+        newGame.setText("New Game");
+        newGame.setFocusable(true);
+        newGame.addMouseListener(gameListener);
+
+        restartGame = new JButton();
+        restartGame.setFont(new Font("Arial", Font.BOLD, 25));
+        restartGame.setText("Restart Game");
+        restartGame.setFocusable(true);
+        restartGame.addMouseListener(gameListener);
+
         statusPanel = new JPanel();
-        statusPanel.setLayout(new BorderLayout());
+        statusPanel.setLayout(new FlowLayout());
+        statusPanel.add(newGame);
+        statusPanel.add(restartGame);
         statusPanel.add(statusLabel);
         frame.add(statusPanel, BorderLayout.NORTH);
 

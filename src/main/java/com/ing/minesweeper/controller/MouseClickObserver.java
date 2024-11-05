@@ -2,7 +2,7 @@ package com.ing.minesweeper.controller;
 
 import com.ing.minesweeper.view.SquareTile;
 
-public interface Observer {
+public interface MouseClickObserver {
     void onLeftClick(SquareTile tile);
     void onRightClick(SquareTile tile);
 }

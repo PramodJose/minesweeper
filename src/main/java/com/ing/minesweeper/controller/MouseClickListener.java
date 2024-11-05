@@ -6,10 +6,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MouseClickListener extends MouseAdapter {
-    Observer observer;
+    MouseClickObserver mouseClickObserver;
 
-    public MouseClickListener(Observer observer) {
-        this.observer = observer;
+    public MouseClickListener(MouseClickObserver mouseClickObserver) {
+        this.mouseClickObserver = mouseClickObserver;
     }
 
     @Override
@@ -17,8 +17,8 @@ public class MouseClickListener extends MouseAdapter {
         SquareTile tile = (SquareTile) e.getSource();
 
         if(e.getButton() == MouseEvent.BUTTON1)
-            observer.onLeftClick(tile);
+            mouseClickObserver.onLeftClick(tile);
         else if(e.getButton() == MouseEvent.BUTTON3)
-            observer.onRightClick(tile);
+            mouseClickObserver.onRightClick(tile);
     }
 }
