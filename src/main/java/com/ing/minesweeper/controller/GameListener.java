@@ -1,7 +1,5 @@
 package com.ing.minesweeper.controller;
 
-import com.ing.minesweeper.view.SquareTile;
-
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

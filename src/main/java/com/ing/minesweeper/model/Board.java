@@ -17,7 +17,7 @@ public class Board {
     }
 
     void placeMines() {
-        Random random = new Random(); // TODO: Remove seed; it's meant for debugging
+        Random random = new Random();
         int minesPlaced = 0;
 
         while( minesPlaced < mines.length) {

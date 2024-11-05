@@ -10,18 +10,18 @@ public class MinesweeperGame implements GameObserver {
 
     public MinesweeperGame() {
         gameListener = new GameListener(this);
-        controller = new GameController(8, 1, gameListener);
+        controller = new GameController(8, 10, gameListener);
         controller.start();
     }
 
     @Override
     public void onNewGame() {
-        controller = new GameController(8, 1, gameListener);
+        controller = new GameController(8, 10, gameListener);
         controller.start();
     }
 
     @Override
     public void onGameRestart() {
-
+        controller.start();
     }
 }
