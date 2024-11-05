@@ -1,12 +1,9 @@
 package com.ing.minesweeper.view;
 
 import com.ing.minesweeper.controller.MouseClickListener;
-import com.ing.minesweeper.model.Board;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class View {
     SquareTile[][] squareBoard;
@@ -87,4 +84,6 @@ public class View {
     public boolean withinBounds( int row, int col ) {
         return row >= 0 && row < size && col >= 0 && col < size;
     }
+
+    public void repaintPanel() { boardPanel.revalidate(); boardPanel.repaint(); }
 }

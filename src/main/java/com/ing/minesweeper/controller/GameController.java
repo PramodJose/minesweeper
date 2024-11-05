@@ -46,8 +46,10 @@ public class GameController implements Observer {
                 revealMines();
                 view.setStatusPanel("Game over! You lost ☹");
             }
-            else
+            else {
                 checkMine(row, col);
+                view.repaintPanel();
+            }
     }
 
     @Override
